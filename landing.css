@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: wheat;
+}
+h1, .links, a, button {
+    border: solid;
+    border-width: 2px;
+    padding: 10px;
+    /* background-color: rgba(90, 133, 242, 0.355); */
+    box-sizing: border-box;
+    background-color: white;
+    margin: 10px;
+    font-family: inherit;
+    border-color: black;
+    color: black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+h1, .links {
+    box-shadow: 5px 5px 0 black;
+}
+a:hover, button:hover {
+    background-color: black;
+    color: white;
+    /* border: solid; */
+    /* background-color: white; */
+    transition: 0.2s;
+}
+a:active, button:active {
+    box-shadow: 0px 0px 0 black;
+    transition: 0.2s;
+}
+.linksInner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.links {
+    overflow: scroll;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+    padding: 10px;
+    flex: 1;
+    margin: 5px;
+    min-width: 300px;
+}
+h1 {
+    font-size: 30px;
+}
+button {
+    font-size: 20px;
+}
+.all {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    max-height: 50%;
+}
+.ns {
+    top: 0;
+}
+.rw {
+    top: 50%;
+}
+.linkSet {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.bg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: 300vw;
+    height: 300vh;
+    z-index: -1;
+    background-image: url(tile.png);
+    background-size: 5vw;
+    background-repeat: repeat;
+    rotate: 30deg;
+    animation: move 30s infinite linear;
+    opacity: 0.2;
+}
+
+@keyframes move {
+    from {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
+}

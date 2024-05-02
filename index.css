@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: "Rajdhani", sans-serif;
+    background-color: wheat;
+    overflow: hidden;
+}
+.hero {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    border: solid;
+    border-width: 2px;
+    box-shadow: 5px 5px 0 black;
+    padding:30px;
+    display: flex;
+    flex-direction: column;
+}
+.hero > h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.hero > a {
+    color: black;
+    text-decoration: none;
+    border: solid;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-color: black;
+    transition: 0.2s;
+}
+.hero > a:hover {
+    background-color: black;
+    color: white;
+}
+.hero > p {
+    margin: 0;
+}
+
+footer {
+    position: fixed;
+    left: 10px;
+    bottom: 10px;
+}
+
+.bg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: 300vw;
+    height: 300vh;
+    z-index: -1;
+    background-image: url(tile.png);
+    background-size: 5vw;
+    background-repeat: repeat;
+    rotate: 30deg;
+    animation: move 30s infinite linear;
+    opacity: 0.2;
+}
+
+@keyframes move {
+    from {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
+}

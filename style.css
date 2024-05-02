@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: "Rajdhani", sans-serif;
+	margin: 0;
+}
+a {
+	border: solid;
+	border-width: 2px;
+	box-shadow: 5px 5px 0 black;
+	margin: 10px;
+	padding: 10px;
+	position: absolute;
+	color: black;
+	text-decoration: none;
+	border-color: black;
+	border-radius: 10px;
+}
+a:hover {
+	background-color: black;
+	color: white;
+	transition: 0.2s;
+}
+a:active {
+	box-shadow: 0 0 0 black;
+	transition: 0.2s;
+}
+.page {
+	width: calc(8.5/11*90vmin);
+	height: 90vmin;
+	margin: 1vmin;
+	display: flex;
+	flex-direction: column;
+	padding: 2vmin;
+	box-sizing: border-box;
+	font-size: 1.5vmin;
+	border: solid;
+}
+.page > h1 {
+	margin: 0;
+	padding: 0;
+}
+.pages {
+	position: absolute;
+	left: 50%;
+	translate: -50% 0;
+	padding-left: 50px;
+}
+
+p {
+	height: 2vmin;
+}
+.special {
+	position: relative;
+}
+.special::before {
+	content: "*";
+	position: absolute;
+	left: -0.7vmin;
+}
+@media print {
+	a {
+		scale: 0;
+	}
+	.pages {
+		margin: 0;
+	}
+	.page { 
+		height: calc(11/8.5*100vw);
+		width: 100vw;
+		margin: 0;
+		font-size: calc(11/8.5*100vw/90*1.5);
+		border: none;
+	}
+	p {
+		height: calc(2/90*100vh);
+	}
+	.special::before {
+		left: calc(-0.7/(8.5/11*90)*100vw);
+	}
+	.question > math {
+		margin-left: calc(1/(8.5/11*90)*100vw);
+	}
+	.question > u {
+		margin-left: calc(1/(8.5/11*90)*100vw);;
+	}
+	.question > math > .unit {
+		margin-right: calc(1/(8.5/11*90)*100vw);;
+	}
+	.quote {
+		font-size: calc(11/8.5*100vw/90*2);
+		height: calc(11/8.5*100vw/90*45);
+	}
+}
+
+.columns {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	box-sizing: border-box;
+}
+.columns > .column {
+	flex: 1;
+	box-sizing: border-box;
+}
+
+.answer {
+	text-decoration: underline;
+}
+.question {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	box-sizing: border-box;
+}
+.question > math {
+	margin-left: 1vmin;
+	font-size: inherit;
+	font-family: inherit;
+}
+.question > u {
+	width: 100%;
+	border-bottom: solid;
+	text-decoration: none;
+	flex: 1;
+	border-width: 0.15vmin;
+	margin-left: 1vmin;
+}
+.question > math >.unit {
+	margin-right: 1vmin;
+}
+
+.notKey { 
+	scale: 0;
+}
+
+.quote {
+	font-size: 2vmin;
+	height: 45vmin;
+}
