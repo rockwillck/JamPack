@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
 body {
-    font-family: "Rajdhani", sans-serif;
+	font-family: 'Times New Roman', Times, serif;
 	margin: 0;
 }
 a {
@@ -39,6 +39,7 @@ a:active {
 .page > h1 {
 	margin: 0;
 	padding: 0;
+    font-family: "Rajdhani", sans-serif;
 }
 .pages {
 	position: absolute;
@@ -48,7 +49,7 @@ a:active {
 }
 
 p {
-	height: 2vmin;
+	height: 2.5vmin;
 }
 .special {
 	position: relative;
@@ -73,7 +74,7 @@ p {
 		border: none;
 	}
 	p {
-		height: calc(2/90*100vh);
+		height: calc(2.5/90*100vh);
 	}
 	.special::before {
 		left: calc(-0.7/(8.5/11*90)*100vw);
@@ -112,11 +113,18 @@ p {
 	flex-direction: row;
 	align-items: center;
 	box-sizing: border-box;
+	flex-wrap: wrap;
 }
 .question > math {
 	margin-left: 1vmin;
 	font-size: inherit;
 	font-family: inherit;
+	
+}
+.questionText {
+}
+.questionText > mo {
+	margin: 0.1vmin;
 }
 .question > u {
 	width: 100%;
@@ -125,6 +133,7 @@ p {
 	flex: 1;
 	border-width: 0.15vmin;
 	margin-left: 1vmin;
+	text-align: center;
 }
 .question > math >.unit {
 	margin-right: 1vmin;

@@ -256,28 +256,156 @@ function gcf(a, b) {
         }
     }
 }
+
+function smallestRoot() {
+    a = Math.floor(random()*4) - 2
+    b = Math.floor(random()*4) - 2
+    c = Math.floor(random()*4) - 2
+    d = Math.floor(random()*4) - 2
+
+    // (ax + b)(cx + d) = acx^2 + (ad + bc)x + bd
+
+    a = a == 0 ? 1 : a
+    c = c == 0 ? 1 : c
+
+    return new Question(
+        `<mtext>The smallest root of&#xA0;</mtext><mn>${a*c < 0 ? "-" : ""}${Math.abs(a*c) == 1 ? "" : Math.abs(a*c)}</mn><msup><mi>x</mi><mn>2</mn></msup><mo>${a*d + b+c < 0 ? "-" : "+"}</mo><mn>${Math.abs(a*d + b*c)}</mn><mi>x</mi><mo>${b*d < 0 ? "-" : "+"}</mo><mn>${Math.abs(b*d)}</mn>`,
+        -b/a < -d/c ? reduceFraction(b, a) : reduceFraction(d, c)
+    )
+}
+
+function remainderOf() {
+    a = Math.floor(random()*10000)
+    b = Math.floor(random()*100)
+    return new Question(
+        `<mn>${a}</mn><mo>&#xf7;</mo><mn>${b}</mn><mtext>&#xA0;has a remainder</mtext>`,
+        a % b,
+        false,
+        "of"
+    )
+}
+
+function propXprop() {
+    a = Math.floor(random()*10) + 1
+    b = Math.floor(random()*5) + 1
+    c = Math.floor(random()*3) + b + 1
+    d = Math.floor(random()*10) + 1
+    e = Math.floor(random()*5) + 1
+    f = Math.floor(random()*3) + e + 1
+    return new Question(
+        `<mn>${a}</mn><mfrac><mn>${b}</mn><mn>${c}</mn></mfrac><mo>&#xd7;</mo><mn>${d}</mn><mfrac><mn>${e}</mn><mn>${f}</mn></mfrac>`,
+        reduceFraction((a*b*d*e),(c*f)),
+        false,
+        "=",
+        (a*b*d*e)/(c*f) % 1 == 0 ? "" : "(improper fraction)"
+    )
+}
+function fracMin() {
+    b = Math.floor(random()*5) + 1
+    c = Math.floor(random()*3) + b + 1
+    e = Math.floor(random()*5) + 1
+    f = Math.floor(random()*3) + e + 1
+    return new Question(
+        `<mfrac><mn>${b}</mn><mn>${c}</mn></mfrac><mo>-</mo><mfrac><mn>${e}</mn><mn>${f}</mn></mfrac>`,
+        reduceFraction(b*f - c*e, c*f),
+        false,
+        "=",
+        "(proper fraction)"
+    )
+}
 function reduceFraction(upper, lower) {
     if (upper == 0) {
         return "0"
     }
-    return `${Math.abs(upper)/gcf(Math.abs(upper), Math.abs(lower))*Math.sign(upper)/Math.sign(lower)}/${Math.abs(lower/gcf(Math.abs(upper), Math.abs(lower)))}`
-    // return `${upper}/${lower}`
+    num = Math.abs(upper)/gcf(Math.abs(upper), Math.abs(lower))*Math.sign(upper)/Math.sign(lower)
+    denom = Math.abs(lower/gcf(Math.abs(upper), Math.abs(lower)))
+    if (denom == 1) {
+        return num
+    }
+    return `${num}/${denom}`
+}
+const primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+function prime1() {
+    num = Math.floor(random()*9) + 2
+    sum = 0
+    for (i = 0; i < num; i++) {
+        sum += primes[i]
+    }
+    return new Question(
+        `<mtext>The sum of the first&#xA0;</mtext><mn>${num}</mn><mtext>&#xA0;primes</mtext>`,
+        sum,
+        false,
+        "is"
+    )
+}
+function geomMean() {
+    twos1 = Math.floor(random()*3)
+    threes1 = Math.floor(random()*3)
+    fives1 = Math.floor(random()*Math.max(0, (3 - twos1 - threes1)))
+    sevens1 = Math.floor(random()*Math.max(0, (2 - twos1 - threes1 - fives1)))
+    twos2 = Math.floor(random()*3)
+    threes2 = Math.floor(random()*3)
+    fives2 = Math.floor(random()*Math.max(0, (3 - twos2 - threes2)))
+    sevens2 = Math.floor(random()*Math.max(0, (2 - twos2 - threes2 - fives2)))
+
+    twos2 += (twos2 + twos1) % 2 != 0 ? 1 : 0
+    threes1 += (threes2 + threes1) % 2 != 0 ? 1 : 0
+    fives2 += (fives2 + fives1) % 2 != 0 ? 1 : 0
+    sevens1 += (sevens2 + sevens1) % 2 != 0 ? 1 : 0
+
+    one = (2**twos1)*(3**threes1)*(5**fives1)*(7**sevens1)
+    two = (2**twos2)*(3**threes2)*(5**fives2)*(7**sevens2)
+    return new Question(
+        `<mtext>The geometric mean of&#xA0;</mtext><mn>${one}</mn><mtext>&#xA0;and&#xA0;</mtext><mn>${two}</mn>`,
+        Math.sqrt(one*two),
+        false,
+        "is"
+    )
+}
+
+function factorial(n) {
+    prod = 1
+    for (i = 0; i < n; i++) {
+        prod *= i + 1
+    }
+    return prod
+}
+function choose(n, k) {
+    return factorial(n)/(factorial(n - k)*factorial(k))
+}
+
+function choose1() {
+    a = Math.floor(random()*5)+2
+    b = a + Math.floor(random()*5)
+    return new Question(
+        `<mtext>How many ways can&#xA0;</mtext><mn>${a}</mn><mtext>&#xA0;people sit in&#xA0;</mtext><mn>${b}</mn><mtext>&#xA0;chairs</mtext>`,
+        choose(b, a)*factorial(a),
+        false,
+        "?"
+    )
 }
 
 const questionTypes = [
     addTwo,
     subtractTwo,
     addMultiple,
+    prime1,
+    remainderOf,
+    percentOf,
+    percentOf2,
+    fracMin,
     mutiplyTwoDiff,
+    propXprop,
     average,
     multiplyTwoLarge,
     sqrt,
     squared,
     diffTwoSquares,
     baseConversion,
+    geomMean,
+    smallestRoot,
+    choose1,
     twoLinear,
-    percentOf,
-    percentOf2,
     setUnion,
     setIntersection
 ]
@@ -305,6 +433,6 @@ for (let i = 1; i <= 80; i++) {
 function fillColumn(num, col) {
     let sectorSize = 10
     let q = questionTypes[Math.floor((Math.ceil(num/sectorSize) - 1)/(80/sectorSize)*questionTypes.length + random()*sectorSize/80*questionTypes.length)]()
-    let newStuff = `<p class="question ${q.range ? "special" : ""}" id="q${num}">(${num}) <math xmlns="http://www.w3.org/1998/Math/MathML">${q.text}<mo>${q.equality}</mo></math><u><math><mn class="${answers ? 'key' : 'notKey'}">${q.getAnswer()}</mn></math></u><math><mo class="unit">${q.unit}</mo></math></p>`
+    let newStuff = `<p class="question ${q.range ? "special" : ""}" id="q${num}">(${num}) <math class="questionText">${q.text}<mo>${q.equality}</mo></math><u><math><mn class="${answers ? 'key' : 'notKey'}">${q.getAnswer()}</mn></math></u><math><mo class="unit">${q.unit}</mo></math></p>`
     col.innerHTML += newStuff
 }
