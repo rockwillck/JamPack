@@ -15,6 +15,7 @@ a {
 	text-decoration: none;
 	border-color: black;
 	border-radius: 10px;
+    font-family: "Rajdhani", sans-serif;
 }
 a:hover {
 	background-color: black;
